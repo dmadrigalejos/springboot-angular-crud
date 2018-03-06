@@ -13,7 +13,8 @@
             newNote: newNote,
             getNotes: getNotes,
             getNote: getNote,
-            editNote: editNote
+            editNote: editNote,
+            deleteNote: deleteNote,
         };
 
         return factory;
@@ -52,6 +53,13 @@
                 method: 'PUT',
                 url: 'note',
                 data: note
+            })
+        }
+        
+        function deleteNote(id) {
+            return $http({
+                method: 'DELETE',
+                url: 'note/' + id
             })
         }
     }

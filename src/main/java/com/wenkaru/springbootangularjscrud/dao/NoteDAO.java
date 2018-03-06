@@ -102,4 +102,17 @@ public class NoteDAO extends JdbcDaoSupport {
             }
         });
     }
+    
+    public void delete(Integer id) {
+        final String sql = "DELETE FROM note WHERE id = ? ";
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                PreparedStatement ps = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, id);
+
+                return ps;
+            }
+        });
+    }
 }
