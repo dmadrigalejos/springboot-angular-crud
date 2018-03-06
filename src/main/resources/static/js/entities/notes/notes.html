@@ -13,6 +13,7 @@
                         <label>Show</label>
                             <select class="input-sm" ng-change="vmNotes.search()"  ng-model="vmNotes.pagination.itemsPerPage"  ng-init="vmNotes.pagination.itemsPerPage = vmNotes.itemsPerPageOption[0]" ng-options="o as o for o in vmNotes.itemsPerPageOption"></select>
                         <label>entries</label>  
+                        <button ui-sref="dashboard.notesnew" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Create Note</button>
                     </div>
                 </div>
                 <div class="panel-body">

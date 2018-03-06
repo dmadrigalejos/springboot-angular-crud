@@ -16,8 +16,11 @@
             controllerAs: 'vmNotes',
             templateUrl: 'js/entities/notes/notes.html'
         })
+        .state('dashboard.notesnew',{
+            url: '/notes/new',
+            controller: 'NewNotesController',
+            controllerAs: 'vmNewNotes',
+            templateUrl: 'js/entities/notes/notes-new.html'
+        })
     }
 })();
-
-
-

@@ -20,6 +20,10 @@ public class NoteService {
     private NoteDAO noteDao;
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(NoteService.class);
+
+    public void add(Note note) {
+        noteDao.add(note);
+    }
     
     public Map<String, Object> get(String searchQuery, Integer pageNumber, String sortBy, String order, Integer limit) {
         Map<String, Object> notes = new HashMap<>();
@@ -31,5 +35,9 @@ public class NoteService {
         }
         
         return notes;
+    }
+    
+    public Boolean isNoteTitleExisting(Note note) {
+        return noteDao.isNoteTitleExisting(note);
     }
 }
