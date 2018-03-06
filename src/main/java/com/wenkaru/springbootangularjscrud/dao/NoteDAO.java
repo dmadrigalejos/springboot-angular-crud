@@ -82,4 +82,24 @@ public class NoteDAO extends JdbcDaoSupport {
         result.put("TotalRows", count);
         return result;
     }
+    
+    public Note get(Integer id) {
+        final String sql = "SELECT * FROM note WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Note>(Note.class), id);
+    }
+    
+    public void update(Note note) {
+        final String sql = "UPDATE note SET title = ?, note = ? WHERE id = ? ";
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                PreparedStatement ps = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, note.getTitle());
+                ps.setString(2, note.getNote());
+                ps.setInt(3, note.getId());
+
+                return ps;
+            }
+        });
+    }
 }

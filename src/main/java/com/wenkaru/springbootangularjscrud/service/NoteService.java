@@ -37,6 +37,14 @@ public class NoteService {
         return notes;
     }
     
+    public Note get(Integer id) {
+        return noteDao.get(id);
+    }
+    
+    public void update(Note note) {
+        noteDao.update(note);
+    }
+    
     public Boolean isNoteTitleExisting(Note note) {
         return noteDao.isNoteTitleExisting(note);
     }

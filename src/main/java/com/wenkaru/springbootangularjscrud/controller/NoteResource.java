@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,5 +47,28 @@ public class NoteResource {
             @RequestParam(required = true) String order, 
             @RequestParam(required = true) Integer limit ) throws Exception {
         return noteService.get(searchQuery, pageNumber, sortBy, order, limit);
+    }
+    
+    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Note get(@PathVariable Integer id) {
+        Note note = new Note();
+        try {
+            note = noteService.get(id);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        
+        return note;
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> editNote(@Valid @RequestBody Note note) {
+        try {
+            noteService.update(note);
+            return ResponseEntity.ok().headers(HeaderUtil.success("Note was successfully updated")).build();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            return ResponseEntity.ok().headers(HeaderUtil.error("Unable to update note")).build();
+        }
     }
 }

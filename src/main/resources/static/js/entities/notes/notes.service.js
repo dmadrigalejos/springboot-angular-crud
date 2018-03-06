@@ -11,7 +11,9 @@
 
         var factory = {
             newNote: newNote,
-            getNotes: getNotes
+            getNotes: getNotes,
+            getNote: getNote,
+            editNote: editNote
         };
 
         return factory;
@@ -35,6 +37,21 @@
                     order: pagination.notes.order,
                     limit: pagination.itemsPerPage
                 }
+            })
+        }
+        
+        function getNote(id) {
+            return $http({
+                metho: 'GET',
+                url: 'note/' + escape(id)
+            })
+        }
+        
+        function editNote(note) {
+            return $http({
+                method: 'PUT',
+                url: 'note',
+                data: note
             })
         }
     }
