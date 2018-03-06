@@ -29,12 +29,12 @@ import com.wenkaru.springbootangularjscrud.service.UserService;
 @RestController
 @RequestMapping("/login")
 public class LoginResource {
-	protected final static Logger LOGGER = LoggerFactory.getLogger(LoginResource.class);
-	
-	@Autowired
+    protected final static Logger LOGGER = LoggerFactory.getLogger(LoginResource.class);
+    
+    @Autowired
     private UserService userService;
 
-	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> login(@RequestBody(required = false) User user, HttpSession httpSession) throws Exception {
         try {
             User userCred = new User();
@@ -74,9 +74,9 @@ public class LoginResource {
 
             return ResponseEntity.badRequest().body(new User());
         }
-	}
-	
-	@RequestMapping(value = "/authenticate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    }
+    
+    @RequestMapping(value = "/authenticate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> authenticate(HttpSession httpSession) {
         try {
             if (httpSession.getAttribute("USERINFO") != null) {
@@ -90,14 +90,14 @@ public class LoginResource {
             return ResponseEntity.ok().body(new User());
         }
     }
-	
-	@RequestMapping(value = "/invalidate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    
+    @RequestMapping(value = "/invalidate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> logout(HttpSession httpSession) {
         httpSession.invalidate();
         return ResponseEntity.ok().body(new User());
     }
-	
-	public static User getCurrentUserLogin() {
+    
+    public static User getCurrentUserLogin() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         if (authentication != null) {
