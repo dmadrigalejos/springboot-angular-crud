@@ -32,7 +32,10 @@ $ java -jar target/springbootangularjscrud-0.0.1-SNAPSHOT.jar
 In order to run and play with the project you need to:
 1. Clone the project from GitHub
 2. Import the project in STS as `Existing Maven Project`
-4. Run the Spring Boot application as normal Java Application
+3. Deploy database schema to mysql
+4. Update `application.properties` with your local database setup
+5. Run the Spring Boot application as normal Java Application
     - Locate SpringbootAngularjsCrudApplication.java file
     - Run As > Java Application
-5. Open your browser and go to http://localhost:8080/note
+6. Open your browser and go to http://localhost:8080/note
+7. Demo user: user/user
