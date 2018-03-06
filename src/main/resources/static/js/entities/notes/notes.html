@@ -25,7 +25,7 @@
                         </thead>
                         <tbody>
                             <tr class="gradeA odd" role="row" ng-repeat="note in vmNotes.notes">
-                                <td>{{note.title}}</td>
+                                <td><a ui-sref="dashboard.notesedit({id:note.id})">{{note.title}}</a></td>
                             </tr>
                         </tbody>
                     </table>

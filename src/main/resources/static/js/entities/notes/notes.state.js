@@ -22,5 +22,18 @@
             controllerAs: 'vmNewNotes',
             templateUrl: 'js/entities/notes/notes-new.html'
         })
+        .state('dashboard.notesedit',{
+            url: '/notes/edit/:id',
+            controller: 'EditNotesController',
+            controllerAs: 'vmEditNotes',
+            templateUrl: 'js/entities/notes/notes-edit.html',
+            resolve: {
+                noteDetails: ['NotesService', '$stateParams',
+                    function (NotesService, $stateParams) {
+                        return NotesService.getNote($stateParams.id);
+                    }
+                ]
+            }
+        })
     }
 })();
