@@ -45,6 +45,10 @@ public class NoteService {
         noteDao.update(note);
     }
     
+    public void delete(Integer id) {
+        noteDao.delete(id);
+    }
+    
     public Boolean isNoteTitleExisting(Note note) {
         return noteDao.isNoteTitleExisting(note);
     }

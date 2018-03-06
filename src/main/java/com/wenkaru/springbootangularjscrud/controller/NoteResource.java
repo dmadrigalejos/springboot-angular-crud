@@ -71,4 +71,15 @@ public class NoteResource {
             return ResponseEntity.ok().headers(HeaderUtil.error("Unable to update note")).build();
         }
     }
+    
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        try {
+            noteService.delete(id);
+            return ResponseEntity.ok().headers(HeaderUtil.success("Note was successfully deleted")).build();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            return ResponseEntity.ok().headers(HeaderUtil.error("Unable to delete note")).build();
+        }
+    }
 }
